@@ -134,7 +134,7 @@ def limitWordList(words, scores, obscurity_factor):
     """
     Trim down the list of words using the obscurity factor
 
-    For example, if obsercurity factor = 0.1 (10%), we would
+    For example, if obscurity factor = 0.1 (10%), we would
     return the bottom 10% of the list of commonly used words
 
     Parameters
