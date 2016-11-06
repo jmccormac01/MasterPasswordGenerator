@@ -14,9 +14,12 @@ and uses Peter Norvig's compilation of the 1/3 million
 most frequent English words:
     http://norvig.com/ngrams/count_1w.txt
     http://norvig.com/ngrams/
+
+Updated to use SystemRandom as suggested by moloch on Python
+sub-reddit.
 """
 import sys
-import random
+from random import SystemRandom as SR
 import argparse as ap
 from datetime import datetime
 import numpy as np
@@ -212,17 +215,17 @@ if __name__ == "__main__":
     # top of any previous user words to generate a password length
     # to satisfy the minimum length
     while len(''.join(password)) < args.min_length:
-        selection = random.choice(words)
+        selection = SR().choice(words)
         if selection not in password:
-            password.append(random.choice(words))
+            password.append(SR().choice(words))
     print('Password word list: {}'.format(password))
     # shuffle the list then make the list into a password string
-    random.shuffle(password)
+    SR().shuffle(password)
     password_string = ''.join(password)
     print('Password shuffled string: {}'.format(password_string))
     # add capitals at this point if requested
     if args.caps:
-        indices = random.sample(range(0, len(password_string)), args.caps)
+        indices = SR().sample(range(0, len(password_string)), args.caps)
         print('Capitalising character indices: {}'.format(indices))
         password_string = ''.join(c.upper() if i in indices else c for i, c in enumerate(password_string))
         print(password_string)
@@ -230,11 +233,11 @@ if __name__ == "__main__":
     # things even more difficult to crack
     if args.symbols:
         symbols = Symbols.symbols
-        symbol_indices = random.sample(range(1, len(password_string)-1), args.symbols)
+        symbol_indices = SR().sample(range(1, len(password_string)-1), args.symbols)
         print('Adding random symbols at indices: {}'.format(symbol_indices))
         for i in range(0, len(symbol_indices)):
             password_string = insertSymbol(password_string,
-                                           random.choice(symbols),
+                                           SR().choice(symbols),
                                            symbol_indices[i])
     print('MASTER PASSWORD: {}'.format(password_string))
     t2 = datetime.utcnow()
