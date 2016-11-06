@@ -1,5 +1,5 @@
 """
-Generator Master Passwords for use with password managers
+Generate master passwords for use with password managers
 
 This code takes inspiration from:
 
@@ -51,7 +51,7 @@ class Symbols(object):
 
 def argParse():
     """
-    Parse the command line argumentions
+    Parse the command line arguments
 
     Parameters
     ----------
@@ -116,7 +116,7 @@ def readWordList(filename):
     words : array-like
         List of words read from filename
     scores : array-like
-        List of corresponding scores to words
+        Numpy array of corresponding scores to words list
 
     Raises
     ------
@@ -222,7 +222,7 @@ if __name__ == "__main__":
     print('Password shuffled string: {}'.format(password_string))
     # add capitals at this point if requested
     if args.caps:
-        indices = random.sample(range(0,len(password_string)), args.caps)
+        indices = random.sample(range(0, len(password_string)), args.caps)
         print('Capitalising character indices: {}'.format(indices))
         password_string = ''.join(c.upper() if i in indices else c for i, c in enumerate(password_string))
         print(password_string)
