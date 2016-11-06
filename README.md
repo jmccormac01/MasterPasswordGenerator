@@ -1,6 +1,6 @@
 ## Master Password Generator
 
-Generate a master password that is a random combination of words, fake words, symbols and of a minimum length.
+Generate a master password of a defined minimum length that is a random combination of commonly used words, user supplied (possibly fake) words and symbols.
 
 ## Motivation
 
@@ -40,10 +40,10 @@ optional arguments:
                         password
 ```
 
-To make a password with 30 characters using the 50% most obscure words from [Peter Norvig's 1/3 million most commonly used English words], with 2 randomly inserted symbols, 2 random letter capitalisations and 2 fake words, we use:
+To make a password with 30 characters using the 50% most obscure words from [Peter Norvig's 1/3 million most commonly used English words](http://norvig.com/ngrams/count_1w.txt), with 2 randomly inserted symbols, 2 random letter capitalisations and 2 user supplied words, we use:
 
 ```
-▶ python master_password_generator.py 30 --obscurity 0.5 --symbols 2 --caps 2 --fake_words xkcd,hipnox
+▶ python master_password_generator.py 30 --obscurity 0.5 --symbols 2 --caps 2 --user_words xkcd,hipnox
 ```
 
 This returns:
